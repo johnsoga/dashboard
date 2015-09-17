@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var data = "2014-11-11 12:45:34: " + Math.floor(Math.random() * 6) + 1;
+var data = "12:45:34: " + Math.floor(Math.random() * 6) + 1;
 
 pushUpdate(Math.floor(Math.random() * 6) + 1);
 
