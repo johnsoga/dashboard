@@ -25,7 +25,9 @@
                 var point = {};
                 point.x = key;
                 point.y = data[key].value;
-                document.getElementById('complete-data').innerHTML += point + "\n";
+                document.getElementById('complete-data').innerHTML += point.x + "\n";
+                document.getElementById('complete-data').innerHTML += point.y + "\n";
+
                 series.data.push(point);
             }
         });
