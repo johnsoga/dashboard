@@ -18,13 +18,12 @@
     socket.on('completeData', function(data) {
         document.getElementById('complete-data').innerHTML = JSON.stringify(data);
         var series = {};
-        series.name = 'KPI';
         series.data = [];
         Object.keys(data).sort().forEach(function (key) {
             if (data.hasOwnProperty(key)) {
                 var point = {};
-                point.x = key;
-                point.y = data[key].value;
+                point.x = data.date;
+                point.y = data.data;
                 document.getElementById('complete-data').innerHTML += point.x + "\n";
                 document.getElementById('complete-data').innerHTML += point.y + "\n";
 
