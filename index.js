@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var data = JSON.parse((new Date()).getTime() + " " + Math.floor(Math.random() * 6) + 1);
+var data = "{" + (new Date()).getTime() + ":" + Math.floor(Math.random() * 6) + 1) + "}";
 
 io.on('connection', function(socket){
   console.log('a user connected');
