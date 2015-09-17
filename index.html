@@ -16,7 +16,7 @@
     var socket = io();
     var hchart = null;
     socket.on('completeData', function(data) {
-        document.getElementById('complete-data').innerHTML = JSON.stringify(data);
+        document.getElementById('complete-data').innerHTML = JSON.stringify(data) + "\n";
         var series = {};
         series.data = [];
         Object.keys(data).sort().forEach(function (key) {
