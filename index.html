@@ -17,6 +17,8 @@
     var hchart = null;
     socket.on('completeData', function(data) {
         document.getElementById('complete-data').innerHTML = JSON.stringify(data);
+        document.getElementById('complete-data').innerHTML += JSON.stringify(data) + "\n";
+
         var series = {};
         series.name = 'KPI';
         series.data = [];
@@ -25,6 +27,7 @@
                 var point = {};
                 point.x = key;
                 point.y = data[key].value;
+                document.getElementById('complete-data').innerHTML += point + "\n";
                 series.data.push(point);
             }
         });
