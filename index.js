@@ -9,8 +9,6 @@ app.get('/', function (req, res) {
 
 var data = "12:45:34: " + Math.floor(Math.random() * 6) + 1;
 
-pushUpdate(Math.floor(Math.random() * 6) + 1);
-
 io.on('connection', function(socket){
   console.log('a user connected');
   io.emit('completeData', data);
@@ -19,6 +17,9 @@ io.on('connection', function(socket){
 function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
 }
+
+setTimeout(function() {pushUpdate(Math.floor(Math.random() * 6) + 1);}, 1000);
+
 
 server.listen(3000, function () {
   var host = server.address().address;
