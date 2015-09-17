@@ -17,7 +17,7 @@ io.on('connection', function(socket){
 });
 
 function pushUpdate(new_data) {
-    io.socket.emit('dataUpdate', new_data);
+    io.emit('dataUpdate', new_data);
 }
 
 server.listen(3000, function () {
