@@ -18,7 +18,7 @@ function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
 }
 
-setTimeout(function() {pushUpdate(Math.floor(Math.random() * 6) + 1);}, 1000);
+setInterval(function() {pushUpdate(Math.floor(Math.random() * 6) + 1);}, 1000);
 
 
 server.listen(3000, function () {
