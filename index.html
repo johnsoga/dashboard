@@ -33,7 +33,11 @@
 
     // smoothie.streamTo(document.getElementById("mycanvas"));
     // line1 = new TimeSeries();
-
+    Highcharts.setOptions({
+        global : {
+            useUTC : false
+        }
+    });
     $(document).ready(function() {
         hchart = new Highcharts.Chart({
             chart: {
