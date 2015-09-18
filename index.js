@@ -28,7 +28,7 @@ function pushUpdate(new_data) {
 io.on('connection', function(socket){
   console.log('a user connected');
   // io.emit('completeData', data);
-  setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+  setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 2000);
 
 });
 
