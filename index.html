@@ -17,7 +17,7 @@
 <script>
     var socket = io();
     var hchart;
-    var schart = new SmoothieChart({grid:{sharpLines:true},timestampFormatter:SmoothieChart.timeFormatter});
+    var schart = new SmoothieChart({grid:{sharpLines:true},timestampFormatter:SmoothieChart.timeFormatter,maxValue:100,minValue:0});
     var canvas = document.getElementById('schart');
     var line = new TimeSeries();
 
