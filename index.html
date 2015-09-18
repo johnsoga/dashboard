@@ -22,8 +22,8 @@
         var point = {};
 
         for(var i; i < data.length; i++) {
-            point.x = data.date;
-            point.y = data.data;
+            point.x = data[i].date;
+            point.y = data[i].data;
             series.data.push(point);
         }
 
