@@ -17,10 +17,6 @@ function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
 }
 
-setTimeout(function() {addData({ "date":(new Date()).getTime()+1000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
-setTimeout(function() {addData({ "date":(new Date()).getTime()+2000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
-setTimeout(function() {addData({ "date":(new Date()).getTime()+3000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
-setTimeout(function() {addData({ "date":(new Date()).getTime()+4000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 
 

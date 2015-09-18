@@ -24,9 +24,6 @@
         for(i = 0; i < data.length; i++) {
             point.x = data[i].date;
             point.y = data[i].data;
-
-            document.getElementById('complete-data').innerHTML = point.x + "\n";
-
             series.data.push(point);
         }
 
