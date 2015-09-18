@@ -7,17 +7,6 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var data = [];
-setTimeout(addData(data), 1000);
-setTimeout(addData(data), 1000);
-setTimeout(addData(data), 1000);
-setTimeout(addData(data), 1000);
-
-io.on('connection', function(socket){
-  console.log('a user connected');
-  io.emit('completeData', data);
-});
-
 function addData(data) {
     data.push({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });
 }
@@ -28,6 +17,16 @@ function pushUpdate(new_data) {
 
 setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 
+var data = [];
+setTimeout(addData(data), 2000);
+setTimeout(addData(data), 2000);
+setTimeout(addData(data), 2000);
+setTimeout(addData(data), 2000);
+
+io.on('connection', function(socket){
+  console.log('a user connected');
+  io.emit('completeData', data);
+});
 
 server.listen(3000, function () {
   var host = server.address().address;
