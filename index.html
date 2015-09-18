@@ -18,7 +18,7 @@
     var socket = io();
     var hchart;
     var smoothie = new SmoothieChart();
-    // var line1 = new TimeSeries();
+    var line1 = new TimeSeries();
 
     function requestData() {
         socket.on('dataUpdate', function (data) {
@@ -27,8 +27,8 @@
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
 
-            // line1.append(data.date, data.data);
-            // smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
+            line1.append(data.date, data.data);
+            smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
         });
     }
 
