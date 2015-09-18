@@ -21,7 +21,7 @@
     var canvas = document.getElementById('schart');
     var series = new TimeSeries();
 
-    smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
+    schart.streamTo(canvas, 1000);
 
     function requestData() {
         socket.on('dataUpdate', function (data) {
