@@ -7,20 +7,20 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var d1 = { "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) }
-var d2 = { "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) }
-var d3 = { "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) }
-var d4 = { "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) }
 var data = [];
-data.push(d1);
-data.push(d2);
-data.push(d3);
-data.push(d4);
+setTimeout(addData, 1000);
+setTimeout(addData, 1000);
+setTimeout(addData, 1000);
+setTimeout(addData, 1000);
 
 io.on('connection', function(socket){
   console.log('a user connected');
   io.emit('completeData', data);
 });
+
+function addData(data) {
+    data.push({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });
+}
 
 function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
