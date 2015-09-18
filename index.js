@@ -8,10 +8,10 @@ app.get('/', function (req, res) {
 });
 
 var data = [];
-setTimeout(addData, 1000);
-setTimeout(addData, 1000);
-setTimeout(addData, 1000);
-setTimeout(addData, 1000);
+setTimeout(addData(data), 1000);
+setTimeout(addData(data), 1000);
+setTimeout(addData(data), 1000);
+setTimeout(addData(data), 1000);
 
 io.on('connection', function(socket){
   console.log('a user connected');
