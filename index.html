@@ -19,17 +19,13 @@
         document.getElementById('complete-data').innerHTML = JSON.stringify(data) + "\n";
         var series = {};
         series.data = [];
-        Object.keys(data).sort().forEach(function (key) {
-            if (data.hasOwnProperty(key)) {
-                var point = {};
-                point.x = data.date;
-                point.y = data.data;
-                document.getElementById('complete-data').innerHTML += point.x + "\n";
-                document.getElementById('complete-data').innerHTML += point.y + "\n";
+        var point = {};
+        point.x = data.date;
+        point.y = data.data;
+        document.getElementById('complete-data').innerHTML += point.x + "\n";
+        document.getElementById('complete-data').innerHTML += point.y + "\n";
+        series.data.push(point);
 
-                series.data.push(point);
-            }
-        });
         $('#hchart').highcharts({
             chart: {
                 type: 'spline',
