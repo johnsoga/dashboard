@@ -32,7 +32,7 @@
                 type: 'areaspline',
                 animation: Highcharts.svg,
                 events: {
-                    load: setTimeout(requestData, 1000);
+                    load: setTimeout(requestData(), 1000);
                 }
             },
             xAxis: {
