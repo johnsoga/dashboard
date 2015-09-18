@@ -13,14 +13,15 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<canvas id="mycanvas" width="800" height="300"></canvas>
+<canvas id="schart" width="800" height="300"></canvas>
 <script>
     var socket = io();
     var hchart;
-    var smoothie = new SmoothieChart();
-    smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
+    var schart = new SmoothieChart({grid:{sharpLines:true}});
+    var canvas = document.getElementById('schart');
+    var series = new TimeSeries();
 
-    var line1 = new TimeSeries();
+    smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
 
     function requestData() {
         socket.on('dataUpdate', function (data) {
@@ -29,9 +30,8 @@
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
 
-            line1.append(data.date, data.data);
-            // line1.append(new Date().getTime(), Math.random());
-            smoothie.addTimeSeries(line1);
+            series.append(data.date, data.data);
+            schart.addTimeSeries(series, {lineWidth:2,strokeStyle:'#00ff00'});
         });
     }
 
