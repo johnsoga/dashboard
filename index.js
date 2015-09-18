@@ -7,7 +7,7 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-var data = [];
+// var data = [];
 
 // function addData(new_data) {
 //     data.push(new_data);
@@ -34,6 +34,5 @@ io.on('connection', function(socket){
 server.listen(3000, function () {
   var host = server.address().address;
   var port = server.address().port;
-
-  console.log('Example app listening at http://%s:%s', host, port);
+  console.log('Dashboard listening at http://%s:%s', host, port);
 });
