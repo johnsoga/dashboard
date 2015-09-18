@@ -43,31 +43,31 @@
     //     }
     // });
     $(document).ready(function() {
-    //     hchart = new Highcharts.Chart({
-    //         chart: {
-    //             renderTo: 'hchart',
-    //             type: 'areaspline',
-    //             animation: Highcharts.svg,
-    //             events: {
-    //                 load: requestData
-    //             }
-    //         },
-    //         xAxis: {
-    //             type: 'datetime',
-    //             tickPixelInterval: 150
-    //         },
-    //         yAxis: {
-    //             max: 100,
-    //             min: 0,
-    //         },
-    //         series: [{
-    //             marker: {
-    //                 enabled: false
-    //             },
-    //             data: []
-    //         }]
-    //     });
-    // });
+        hchart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'hchart',
+                type: 'areaspline',
+                animation: Highcharts.svg,
+                events: {
+                    load: requestData
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                max: 100,
+                min: 0,
+            },
+            series: [{
+                marker: {
+                    enabled: false
+                },
+                data: []
+            }]
+        });
+    });
 
 </script>
 <!-- <div id='hchart'></div> -->
