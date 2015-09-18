@@ -17,7 +17,7 @@
     var socket = io();
     var hchart;
     var smoothie = new SmoothieChart();
-    var line1 = new TimeSeries();
+    // var line1 = new TimeSeries();
 
     function requestData() {
         socket.on('dataUpdate', function (data) {
