@@ -9,20 +9,26 @@ app.get('/', function (req, res) {
 
 var data = [];
 
-function addData(new_data) {
-    data.push(new_data);
-}
+// function addData(new_data) {
+//     data.push(new_data);
+// }
 
 function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
 }
 
-setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+// setTimeout(function() {addData({ "date":(new Date()).getTime()+1000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+// setTimeout(function() {addData({ "date":(new Date()).getTime()+2000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+// setTimeout(function() {addData({ "date":(new Date()).getTime()+3000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+// setTimeout(function() {addData({ "date":(new Date()).getTime()+4000, "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+// setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 
 
 io.on('connection', function(socket){
   console.log('a user connected');
-  io.emit('completeData', data);
+  // io.emit('completeData', data);
+  setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+
 });
 
 server.listen(3000, function () {
