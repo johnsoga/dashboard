@@ -16,38 +16,26 @@
     var socket = io();
     var hchart = null;
 
-        $('#hchart').highcharts({
-            chart: {
-                type: 'spline',
-                animation: Highcharts.svg, // don't animate in old IE
-                marginRight: 10,
-                events: {
-                    load: function () {
-                        hchart = this;
-                    }
+    $('#hchart').highcharts({
+        chart: {
+            type: 'spline',
+            animation: Highcharts.svg, // don't animate in old IE
+            marginRight: 10,
+            events: {
+                load: function () {
+                    hchart = this;
                 }
-            },
-            colors: ['#7cb5ec', '#ff8528', '#90ed7d', '#f7a35c', '#8085e9',
-                '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'],
-            title: {
-                text: 'Example'
-            },
-            xAxis: {
-                type: 'datetime',
-                tickPixelInterval: 150
-            },
-            yAxis: {
-                title: {
-                    text: 'Value'
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 1,
-                    color: '#808080'
-                }]
-            },
-            series: [series]
-        });
+            }
+        },
+        colors: ['#7cb5ec', '#ff8528', '#90ed7d', '#f7a35c', '#8085e9', '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'],
+        title: {
+            text: 'Example'
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150
+        },
+        series: [series]
     });
 
     socket.on('dataUpdate', function (data) {
