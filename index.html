@@ -16,19 +16,24 @@
     var socket = io();
     var hchart;
 
-    socket.on('dataUpdate', function (data) {
-        //document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
-        var series = hchart.series[0];
-        shift = series.data.length > 20;
-        hchart.series[0].addPoint([data.date, data.data], true, shift);
-    });
+    function requestData() {
+        socket.on('dataUpdate', function (data) {
+            //document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
+            var series = hchart.series[0];
+            shift = series.data.length > 20;
+            hchart.series[0].addPoint([data.date, data.data], true, shift);
+        });
+    }
 
     $(document).ready(function() {
         hchart = new Highcharts.Chart({
             chart: {
                 renderTo: 'hchart',
                 defaultSeriesType: 'areaspline',
-                animation: Highcharts.svg
+                animation: Highcharts.svg,
+                events: {
+                    load: requestData
+                }
             },
             xAxis: {
                 type: 'datetime',
