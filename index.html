@@ -18,6 +18,8 @@
     var socket = io();
     var hchart;
     var smoothie = new SmoothieChart();
+    smoothie.streamTo(document.getElementById("mycanvas"));
+
     var line1 = new TimeSeries();
 
     function requestData() {
@@ -32,7 +34,6 @@
         });
     }
 
-    smoothie.streamTo(document.getElementById("mycanvas"));
     Highcharts.setOptions({
         global : {
             useUTC : false
