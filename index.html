@@ -21,7 +21,6 @@
     var canvas = document.getElementById('schart');
     var line = new TimeSeries();
 
-    schart.streamTo(canvas, 1000);
 
 
     function requestData() {
@@ -33,6 +32,7 @@
 
             line.append(data.date, data.data);
             schart.addTimeSeries(line, {lineWidth:2,strokeStyle:'#00ff00'});
+            schart.streamTo(canvas, 1000);
 
         });
     }
