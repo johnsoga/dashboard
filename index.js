@@ -14,7 +14,7 @@ var data = [];
 // }
 
 function pushUpdate(new_data) {
-    console.log("sent" + JSON.stringify(new_data));
+    //console.log("sent" + JSON.stringify(new_data));
     io.emit('dataUpdate', new_data);
 }
 
