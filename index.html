@@ -19,7 +19,9 @@
     var hchart;
     var schart = new SmoothieChart({grid:{sharpLines:true}});
     var canvas = document.getElementById('schart');
-    var series = new TimeSeries();
+    var line = new TimeSeries();
+
+    schart.streamTo(canvas, 1000);
 
 
     function requestData() {
@@ -29,9 +31,8 @@
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
 
-            series.append(data.date, data.data);
-            schart.addTimeSeries(series, {lineWidth:2,strokeStyle:'#00ff00'});
-            schart.streamTo(canvas, 1000);
+            line.append(data.date, data.data);
+            schart.addTimeSeries(line, {lineWidth:2,strokeStyle:'#00ff00'});
 
         });
     }
