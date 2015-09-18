@@ -9,29 +9,37 @@
 </head>
 
 <body>
+<script type="text/javascript" src="smoothie.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io();
     var hchart;
+    var smoothie = new SmoothieChart();
+    var line1;
 
     function requestData() {
+        line1 = new TimeSeries();
+
         socket.on('dataUpdate', function (data) {
             //document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
             var series = hchart.series[0];
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
+            line1.append(data.date, data.data);
+            smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/); 
         });
     }
 
+    smoothie.streamTo(document.getElementById("mycanvas"));
     $(document).ready(function() {
         hchart = new Highcharts.Chart({
             chart: {
                 renderTo: 'hchart',
                 type: 'areaspline',
                 animation: {
-                    duration: 10
+                    duration: 1000
                 },
                 events: {
                     load: requestData
@@ -57,6 +65,7 @@
 </script>
 <h1>Real-time Dashboard</h1>
 <div id='hchart'></div>
+<canvas id="mycanvas" width="400" height="100"></canvas>
 <!-- <pre id='updated-data'></pre> -->
 </body>
 </html>
