@@ -59,8 +59,6 @@
     });
     socket.on('dataUpdate', function (data) {
         document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
-        var d = hchart.series[0].data;
-        console.log('new point');
         hchart.series[0].addPoint([data.date, data.data], true, true);
     });
 </script>
