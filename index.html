@@ -37,11 +37,11 @@
         });
     }
 
-    // Highcharts.setOptions({
-    //     global : {
-    //         useUTC : false
-    //     }
-    // });
+    Highcharts.setOptions({
+        global : {
+            useUTC : false
+        }
+    });
     $(document).ready(function() {
         hchart = new Highcharts.Chart({
             chart: {
@@ -70,7 +70,7 @@
     });
 
 </script>
-<!-- <div id='hchart'></div> -->
+<div id='hchart'></div>
 <pre id='updated-data'></pre>
 </body>
 </html>
