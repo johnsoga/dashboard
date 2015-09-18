@@ -19,10 +19,9 @@
         document.getElementById('complete-data').innerHTML = JSON.stringify(data) + "\n";
         var series = {};
         series.data = [];
-        var point = {};
-        point.x = data.date;
-        point.y = data.data;
-        series.data.push(point);
+        for(var i; i < data.length; i++) {
+            series.data.push({data[i].date:data[i].data});
+        }
 
         $('#hchart').highcharts({
             chart: {
