@@ -14,7 +14,6 @@
 <script src="http://code.highcharts.com/highcharts.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <canvas id="mycanvas" height="100"></canvas>
-
 <script>
     var socket = io();
     var hchart;
@@ -24,9 +23,9 @@
     function requestData() {
         socket.on('dataUpdate', function (data) {
             // document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
-            // var series = hchart.series[0];
+            var series = hchart.series[0];
             shift = series.data.length > 20;
-            // hchart.series[0].addPoint([data.date, data.data], true, shift);
+            hchart.series[0].addPoint([data.date, data.data], true, shift);
 
             // line1.append(data.date, data.data);
             // smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
@@ -34,41 +33,41 @@
     }
 
     smoothie.streamTo(document.getElementById("mycanvas"));
-    // Highcharts.setOptions({
-    //     global : {
-    //         useUTC : false
-    //     }
-    // });
-    // $(document).ready(function() {
-    //     hchart = new Highcharts.Chart({
-    //         chart: {
-    //             renderTo: 'hchart',
-    //             type: 'areaspline',
-    //             animation: Highcharts.svg,
-    //             events: {
-    //                 load: requestData
-    //             }
-    //         },
-    //         xAxis: {
-    //             type: 'datetime',
-    //             tickPixelInterval: 150
-    //         },
-    //         yAxis: {
-    //             max: 100,
-    //             min: 0,
-    //         },
-    //         series: [{
-    //             marker: {
-    //                 enabled: false
-    //             },
-    //             data: []
-    //         }]
-    //     });
-    // });
+    Highcharts.setOptions({
+        global : {
+            useUTC : false
+        }
+    });
+    $(document).ready(function() {
+        hchart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'hchart',
+                type: 'areaspline',
+                animation: Highcharts.svg,
+                events: {
+                    load: requestData
+                }
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            yAxis: {
+                max: 100,
+                min: 0,
+            },
+            series: [{
+                marker: {
+                    enabled: false
+                },
+                data: []
+            }]
+        });
+    });
 
 </script>
 <h1>Real-time Dashboard</h1>
-<!-- <div id='hchart'></div> -->
+<div id='hchart'></div>
 <!-- <pre id='updated-data'></pre> -->
 </body>
 </html>
