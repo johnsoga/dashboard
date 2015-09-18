@@ -7,21 +7,22 @@ app.get('/', function (req, res) {
   res.sendFile(__dirname + '/index.html');
 });
 
-function addData(data) {
-    data.push({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });
+var data = [];
+
+function addData(new_data) {
+    data.push(new_data);
 }
 
 function pushUpdate(new_data) {
     io.emit('dataUpdate', new_data);
 }
 
+setTimeout(function() {addData({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+setTimeout(function() {addData({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+setTimeout(function() {addData({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
+setTimeout(function() {addData({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 setInterval(function() {pushUpdate({ "date":(new Date()).getTime(), "data":(Math.floor(Math.random() * 6) + 1) });}, 1000);
 
-var data = [];
-setTimeout(addData(data), 2000);
-setTimeout(addData(data), 2000);
-setTimeout(addData(data), 2000);
-setTimeout(addData(data), 2000);
 
 io.on('connection', function(socket){
   console.log('a user connected');
