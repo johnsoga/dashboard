@@ -16,13 +16,6 @@
     var socket = io();
     var hchart = null;
 
-    socket.on('dataUpdate', function (data) {
-        document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
-        var series = hchart.series[0];
-        shift = series.data.length > 20;
-        hchart.series[0].addPoint([data.date, data.data], true, true);
-    });
-
     $('#hchart').highcharts({
         chart: {
             type: 'spline',
@@ -39,6 +32,14 @@
         },
         series: [series]
     });
+
+    socket.on('dataUpdate', function (data) {
+        document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
+        var series = hchart.series[0];
+        shift = series.data.length > 20;
+        hchart.series[0].addPoint([data.date, data.data], true, true);
+    });
+    
 </script>
 
 <h1>Real-time Dashboard</h1>
