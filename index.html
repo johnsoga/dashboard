@@ -15,18 +15,6 @@
 <script>
     var socket = io();
     var hchart = null;
-    socket.on('completeData', function(data) {
-        document.getElementById('complete-data').innerHTML = JSON.stringify(data) + "\n";
-        var series = {};
-        series.data = [];
-        var point = {};
-
-        for(i = 0; i < data.length; i++) {
-            point.x = data[i].date;
-            point.y = data[i].data;
-            series.data.push(point);
-        }
-
 
         $('#hchart').highcharts({
             chart: {
@@ -61,9 +49,12 @@
             series: [series]
         });
     });
+
     socket.on('dataUpdate', function (data) {
-        document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
+        var series = hchart.series[0];
+        shift = series.data.length > 20;
         hchart.series[0].addPoint([data.date, data.data], true, true);
+        document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
     });
 </script>
 
