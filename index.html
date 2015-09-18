@@ -17,9 +17,10 @@
 <script>
     var socket = io();
     var hchart;
-    var schart = new SmoothieChart({grid:{sharpLines:true,millisPerLine:5000},timestampFormatter:SmoothieChart.timeFormatter,maxValue:100,minValue:0});
+    var schart = new SmoothieChart({grid:{sharpLines:true,millisPerLine:1000},timestampFormatter:SmoothieChart.timeFormatter,maxValue:100,minValue:0});
     var canvas = document.getElementById('schart');
-    var line = new TimeSeries();
+    schart.streamTo(canvas, 1000);
+    var line1 = new TimeSeries();
 
 
 
@@ -30,10 +31,8 @@
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
 
-            line.append(data.date, data.data);
+            line1.append(data.date, data.data);
             schart.addTimeSeries(line, {lineWidth:2,strokeStyle:'#00ff00'});
-            schart.streamTo(canvas, 1000);
-
         });
     }
 
