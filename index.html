@@ -30,9 +30,11 @@
             chart: {
                 renderTo: 'hchart',
                 type: 'areaspline',
-                animation: Highcharts.svg,
+                animation: {
+                    duration: 1000
+                },
                 events: {
-                    load: setTimeout(function() {requestData()}, 1000);
+                    load: requestData;
                 }
             },
             xAxis: {
