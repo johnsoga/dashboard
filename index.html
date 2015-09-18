@@ -16,13 +16,28 @@
     var socket = io();
     var hchart = null;
 
-    
-
     socket.on('dataUpdate', function (data) {
         document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
         var series = hchart.series[0];
         shift = series.data.length > 20;
         hchart.series[0].addPoint([data.date, data.data], true, true);
+    });
+
+    $('#hchart').highcharts({
+        chart: {
+            type: 'spline',
+            animation: Highcharts.svg, // don't animate in old IE
+            events: {
+                load: function () {
+                    hchart = this;
+                }
+            }
+        },
+        xAxis: {
+            type: 'datetime',
+            tickPixelInterval: 150
+        },
+        series: [series]
     });
 </script>
 
