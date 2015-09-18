@@ -17,7 +17,7 @@
 <script>
     var socket = io();
     var hchart;
-    var schart = new SmoothieChart({grid:{sharpLines:true}});
+    var schart = new SmoothieChart({grid:{sharpLines:true},timestampFormatter:SmoothieChart.timeFormatter});
     var canvas = document.getElementById('schart');
     var line = new TimeSeries();
 
@@ -70,7 +70,6 @@
     });
 
 </script>
-<h1>Real-time Dashboard</h1>
 <div id='hchart'></div>
 <!-- <pre id='updated-data'></pre> -->
 </body>
