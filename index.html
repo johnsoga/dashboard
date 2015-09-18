@@ -21,7 +21,7 @@
 
     function requestData() {
         socket.on('dataUpdate', function (data) {
-            document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
+            // document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
             var series = hchart.series[0];
             shift = series.data.length > 20;
             hchart.series[0].addPoint([data.date, data.data], true, shift);
