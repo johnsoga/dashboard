@@ -14,7 +14,7 @@
 <script src="/socket.io/socket.io.js"></script>
 <script>
     var socket = io();
-    var hchart = null;
+    var hchart;
 
     socket.on('dataUpdate', function (data) {
         document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
@@ -23,24 +23,22 @@
         hchart.series[0].addPoint([data.date, data.data], true, true);
     });
 
-    $('#hchart').highcharts({
-        chart: {
-            type: 'spline',
-            animation: Highcharts.svg, // don't animate in old IE
-            events: {
-                load: function () {
-                    hchart = this;
-                }
-            }
-        },
-        xAxis: {
-            type: 'datetime',
-            tickPixelInterval: 150
-        },
-        series: [series]
+    $(document).ready(function() {
+        hchart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'hchart',
+                defaultSeriesType: 'spline',
+                animation: Highcharts.svg
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150
+            },
+            series: [{
+                data: []
+            }]
+        });
     });
-
-
 
 </script>
 
