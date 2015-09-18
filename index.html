@@ -20,19 +20,20 @@
     var line1;
 
     function requestData() {
-        line1 = new TimeSeries();
 
         socket.on('dataUpdate', function (data) {
             //document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
             var series = hchart.series[0];
             shift = series.data.length > 20;
-            hchart.series[0].addPoint([data.date, data.data], true, shift);
+            hchart.series[0].addPoint([data.dte, data.data], true, shift);
             line1.append(data.date, data.data);
-            smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/); 
+            smoothie.streamTo(document.getElementById("mycanvas"), 1000 /*delay*/);
         });
     }
 
     smoothie.streamTo(document.getElementById("mycanvas"));
+    line1 = new TimeSeries();
+
     $(document).ready(function() {
         hchart = new Highcharts.Chart({
             chart: {
