@@ -60,24 +60,18 @@
     socket.on('dataUpdate', function (data) {
         document.getElementById('updated-data').innerHTML += JSON.stringify(data) + "\n";
         var series = hchart.series[0].data;
-        for (var key in data) {
-            if (data.hasOwnProperty(key)) {
-                var bOld = false;
-                for (var i = 0; i < series.length; i++) {
-                    if (series[i].x === key) {
-                        bOld = true;
-                        series[i].update(data[key].value);
-                        break;
-                    }
-                }
-                if (!bOld) {
-                    console.log('new point');
-                    hchart.series[0].addPoint([parseInt(key), data[key].value], true, true);
-                }
-            }
-        }
+        //series[i].update(data[key].value);
+        //console.log('new point');
+        hchart.series[0].addPoint([parseInt(key), data[key].value], true, true);
     });
 </script>
+
+var series = {};
+series.data = [];
+var point = {};
+point.x = data.date;
+point.y = data.data;
+series.data.push(point);
 
 <h1>Real-time Dashboard</h1>
 <div id='hchart'></div>
